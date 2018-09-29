@@ -60,7 +60,7 @@
                 foreach ($generateList as $list):
             ?>
                 <tr>
-                    <td>Class Grade <?php echo $gradeLevel = str_replace(strtolower($school), '', $list['localgroup']); ?></td>
+                    <td>Grade <?php echo $gradeLevel = str_replace(strtolower($school), '', $list['localgroup']); ?></td>
                     <td>student</td>
                     <td><?php echo $list['userid']; ?></td>
                     <td><?php echo $list['pt']; ?></td>
