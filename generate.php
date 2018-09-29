@@ -8,8 +8,9 @@
     $generate = new Generate();
     $generateList = $generate->getUserList($database, $school, $grade);
 
-    $data = array(array("Class Name", "User Type", "User ID", "Password", "First Name", "Last Name", "E -Mail"));
+    $data = array(array("Class Name", "User Type", "User ID", "Password", "First Name", "Last Name", "E -Mail")); // Initializes the main array used for the CSV
     
+    // Loops through the data from the database then pushes to the array
     foreach($generateList as $list):
         $gradeLevel = str_replace(strtolower($school), '', $list['localgroup']);
         $name = explode(" ", $list['fullname']);
@@ -18,11 +19,14 @@
 
     $fileName = 'ATRT_Grade_'. $gradeLevel .'.csv';
 
+    // Sets the page's header to directly download the generated CSV
     header('Content-Type: application/excel');
     header('Content-Disposition: attachment; filename="' . $fileName . '"');
     
+    // Opens a php output stream
     $fp = fopen('php://output', 'w');
 
+    // Loops through the main array to add data into the CSV
     foreach ($data as $csv):
         fputcsv($fp, $csv);
     endforeach;
