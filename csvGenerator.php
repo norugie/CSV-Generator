@@ -6,7 +6,7 @@
         <option value="GES">GES</option>
         <option value="NBES">NBES</option>
     </select><br />
-    <label for="grade"><b>Enter Grade Level (Optional): </b></label>
+    <label for="grade"><b>Enter Grade Level: </b></label>
     <select name="grade" id="grade">
         <option value="all">All grade levels</option>
         <option value="K">Kindergarten</option>
