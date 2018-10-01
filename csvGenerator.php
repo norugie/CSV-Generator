@@ -1,3 +1,11 @@
+<?php
+
+    require 'connect.php';
+    $database = new Database();
+    require 'functions.php';
+    $generate = new Generate();
+
+?>
 <form action="csvGenerator.php?generate=true" method="POST">
     <label for="school"><b>Generate CSV for Grade Level: </b></label>
     <select name="school" id="school">
@@ -37,8 +45,11 @@
             $grade = strtolower($school) . $_POST['grade'];
         }
 
+        $generateList = $generate->getUserList($database, $school, $grade);
+
 ?>
         <b>Selected School: </b> <?php echo $school; ?><br />
+        <b>Student Count: </b><?php echo count($generateList); ?><br />
         <a href="generate.php?school=<?php echo $school; ?>&grade=<?php echo $grade;?>" target="_blank">Download the CSV file for this list</a><hr /><br />
         <table>
             <tr>
@@ -50,15 +61,7 @@
                 <td>Last Name</td>
                 <td>E-mail</td>
             </tr>
-            <?php
-                require 'connect.php';
-                $database = new Database();
-                require 'functions.php';
-                $generate = new Generate();
-                $generateList = $generate->getUserList($database, $school, $grade);
-
-                foreach ($generateList as $list):
-            ?>
+            <?php foreach ($generateList as $list): ?>
                 <tr>
                     <td>Class Grade <?php echo $gradeLevel = str_replace(strtolower($school), '', $list['localgroup']); ?></td>
                     <td>student</td>
@@ -68,9 +71,7 @@
                     <td><?php echo $fullname[0]; ?></td>
                     <td><?php echo $list['userid'] . '@nisgaa.bc.ca'; ?></td>
                 </tr>
-            <?php                      
-                endforeach;
-            ?>
+            <?php endforeach; ?>
 
         </table>
 <?php
