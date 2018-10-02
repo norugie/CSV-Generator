@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-<!-- 
-    
-    *********************************
-    *********************************
-    *****                       *****
-    ***** CSV Generator         *****
-    ***** Rugie Ann Barrameda   *****
-    ***** 29 September 2018     *****
-    *****                       *****
-    *********************************
-    *********************************
-    
-    This CSV Generator is made to generate a CSV file which contains the student information needed to create student accounts for All-The-Right-Type.
-    This program is created for the benefit of School District No. 92 (Nisga'a).
-
- -->
-=======
 <?php
 
     require 'connect.php';
@@ -24,7 +6,6 @@
     $generate = new Generate();
 
 ?>
->>>>>>> master
 <form action="csvGenerator.php?generate=true" method="POST">
     <label for="school"><b>Generate CSV for Grade Level: </b></label>
     <select name="school" id="school">
@@ -82,19 +63,7 @@
                 <td>Last Name</td>
                 <td>E-mail</td>
             </tr>
-<<<<<<< HEAD
-            <?php
-                require 'connect.php'; // Connects the database
-                $database = new Database(); // Initializes the Database class
-                require 'functions.php'; // Connects the file for the methods
-                $generate = new Generate(); // Initializes the Generate class
-                $generateList = $generate->getUserList($database, $school, $grade);
-
-                foreach ($generateList as $list):
-            ?>
-=======
             <?php foreach ($generateList as $list): ?>
->>>>>>> master
                 <tr>
                     <td>Grade <?php echo $gradeLevel = str_replace(strtolower($school), '', $list['localgroup']); ?></td>
                     <td>student</td>
